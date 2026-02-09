@@ -1,0 +1,81 @@
+\documentclass{article}
+
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{geometry}
+
+\geometry{margin=1in}
+
+\begin{document}
+
+\begin{table}[t]
+\centering
+\caption{DC Microgrid Model, Constraint, and Controller Parameters}
+\label{tab:FTCDCMGParameters}
+
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{l c}
+\hline
+\textbf{Parameter} & \textbf{Value} \\
+\hline
+
+\multicolumn{2}{l}{\textbf{Model Parameters}} \\[1mm]
+Follower-bus capacitances $c_{\mathrm{f},j}$, $\forall j\in\mathcal{N}_{\mathrm{f}}^{\mathrm a}$ 
+& $1\,\text{mF}$ \\
+Line inductances $\ell_{\mathrm{line},j}$, $\forall j\in\mathcal{E}^{\mathrm a}$ 
+& $1\,\text{mH}$ \\
+Line resistances $r_{\mathrm{line},j}$, $\forall j\in\mathcal{E}^{\mathrm a}$ 
+& $0.1\,\Omega$ \\
+Load admittances $\psi_{\mathrm{load},j}$, $\forall j\in\mathcal{N}_{\mathrm{f}}^{\mathrm a}$ 
+& $0.1\,\text{S}$ \\
+Load current terms $\delta_{\mathrm{load},j}$, $\forall j\in\mathcal{N}_{\mathrm{f}}^{\mathrm a}$ 
+& $10\,\text{A}$ \\
+Pre-fault follower-bus voltages $v_{\mathrm{f}}^{*}$ 
+& via $R_{\mathrm{eq}}^{-1} b$ \\
+Pre-fault line currents $i_{\mathrm{line}}^{*}$ 
+& via $R_{\mathrm{eq}}^{-1} b$ \\
+Pre-fault injected currents $i_{\mathrm{f},j}^{*}$, $\forall j\in\mathcal{N}_{\mathrm{f}}^{\mathrm a}$ 
+& $100\,\text{A}$ \\
+Pre-fault setting-bus voltages $v_{\mathrm{s},j}^{*}$, $\forall j\in\mathcal{N}_{\mathrm{s}}^{\mathrm a}$ 
+& $200\,\text{V}$ \\
+\hline
+
+\multicolumn{2}{l}{\textbf{Inequality Constraints}} \\[1mm]
+Setting-bus voltage limits $v_{\mathrm{s},j}^{\min}$ 
+& $180\,\text{V}$ \\
+Nominal follower-current limits $i_{\mathrm{f},j}^{\max}$ 
+& $150\,\text{A}$ \\[2mm]
+\multicolumn{2}{l}{\textit{Fault-dependent follower-current limits}} \\[1mm]
+$i_{\mathrm{f},2}^{\max}$ (reduced at $t=5\,\text{s}$) 
+& $150\rightarrow 40\,\text{A}$ \\
+$i_{\mathrm{f},5}^{\max}$ (reduced at $t=10\,\text{s}$) 
+& $150\rightarrow 50\,\text{A}$ \\
+All other $i_{\mathrm{f},j}^{\max}$ 
+& $150\,\text{A}$ \\
+\hline
+
+\multicolumn{2}{l}{\textbf{Controller / Aug-PDGD Parameters}} \\[1mm]
+Augmentation parameter $\rho$ & $1$ \\
+Primal--dual gain $\eta$  & $10^{4}$ \\
+Strong convexity constant $\mu$ & $100$ \\
+Smoothness constant $\ell$ & $100$ \\
+Matrix constants $\kappa_{1},\kappa_{2}$  & $\kappa_{1}=0.004,\ \kappa_{2}=5.5$ \\
+Tuning parameter $\epsilon$ & $0.1$ \\
+\hline
+\end{tabular}
+}
+\end{table}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
